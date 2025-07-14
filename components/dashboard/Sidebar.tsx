@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   HomeIcon,
@@ -55,8 +56,8 @@ export function Sidebar() {
         {/* Logo */}
         <Link href="/">
           <div className="flex items-center h-16 px-6 border-b border-white/10 bg-white/5">
-            <span className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl mr-3 shadow-lg">G</span>
-            <span className="text-2xl font-extrabold text-white tracking-tight drop-shadow">Gambino</span>
+            <Image src="/favicon.ico" alt="Gambino" width={40} height={40} />
+            <span className="text-2xl font-extrabold text-white tracking-tight drop-shadow ml-3">Gambino</span>
           </div>
         </Link>
 
