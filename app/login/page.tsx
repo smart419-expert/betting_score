@@ -36,6 +36,15 @@ export default function LoginPage() {
     }, 1000)
   };
 
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
+    if (error) {
+      toast.error(error.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex items-center min-h-[93vh] justify-center bg-black">
       <div className="w-full max-w-md mx-auto rounded-3xl shadow-2xl bg-[#181A20] px-8 py-10 flex flex-col items-center">
@@ -43,6 +52,14 @@ export default function LoginPage() {
         <Image src="/favicon.ico" alt="Gambino" width={32} height={32} />
         <h1 className="text-2xl font-bold text-white mb-1 text-center">Welcome to Gambino</h1>
         <p className="text-gray-600 mb-6 text-center">Log in to your account</p>
+        <button
+          type="button"
+          onClick={handleGoogleSignIn}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 mb-4 bg-white text-gray-800 font-medium rounded-lg border border-gray-300 hover:bg-gray-100 transition-all"
+        >
+          <FcGoogle className="w-5 h-5" />
+          {loading ? 'Redirecting...' : 'Sign in with Google'}
+        </button>
         <form onSubmit={handleSubmit} className="w-full max-w-sm">
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-white mb-1">Email</label>
