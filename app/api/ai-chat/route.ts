@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
         messages: [
-          { role: 'system', content: 'You are BetVerse AI, a helpful assistant for sports and forex tips. Answer concisely and helpfully.' },
+          { role: 'system', content: 'You are Gambino, a helpful assistant for sports and forex tips. Answer concisely and helpfully.' },
           { role: 'user', content: message },
         ],
         max_tokens: 512,

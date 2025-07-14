@@ -95,9 +95,9 @@ export function MobileSidebar({ open, setOpen }: MobileSidebarProps) {
                 <div className="flex h-16 shrink-0 items-center">
                   <Link href="/dashboard" className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">B</span>
+                      <span className="text-white font-bold text-lg">G</span>
                     </div>
-                    <span className="text-xl font-bold text-gray-900">BASE44</span>
+                    <span className="text-xl font-bold text-gray-900">Gambino</span>
                   </Link>
                 </div>
 

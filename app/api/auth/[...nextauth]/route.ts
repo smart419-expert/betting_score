@@ -1,10 +1,11 @@
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';image.pngimage.png
+import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import type { SessionStrategy } from 'next-auth';
 // import { PrismaAdapter } from '@next-auth/prisma-adapter';
 // import { prisma } from '@/lib/prisma';
 
-export const authOptions = {
+const authOptions = {
   // adapter: PrismaAdapter(prisma), // Uncomment and configure for database
   providers: [
     GoogleProvider({
@@ -26,7 +27,7 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt' as SessionStrategy,
   },
   pages: {
     signIn: '/login',
@@ -36,7 +37,7 @@ export const authOptions = {
     newUser: '/dashboard',
   },
   callbacks: {
-    async session({ session, token }) {
+    async session({ session, token }: { session: any; token: any }) {
       // Attach user info to session
       session.user.id = token.sub;
       return session;

@@ -1,4 +1,4 @@
-# BASE44 - AI-Powered Sports & Forex Tipster Platform
+# Gambino - AI-Powered Sports & Forex Tipster Platform
 
 A comprehensive, modern tipster platform that provides data-driven betting suggestions, forex signals, and community features for smart betting decisions.
 
@@ -62,8 +62,8 @@ A comprehensive, modern tipster platform that provides data-driven betting sugge
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-org/base44-platform.git
-   cd base44-platform
+   git clone https://github.com/your-org/Gambino-platform.git
+   cd Gambino-platform
    ```
 
 2. **Install dependencies**
@@ -81,7 +81,7 @@ A comprehensive, modern tipster platform that provides data-driven betting sugge
    Configure the following variables:
    ```env
    # Database
-   DATABASE_URL="postgresql://user:password@localhost:5432/base44"
+   DATABASE_URL="postgresql://user:password@localhost:5432/Gambino"
    
    # Authentication
    NEXTAUTH_SECRET="your-secret-key"
@@ -220,10 +220,10 @@ npm run test:coverage # Run tests with coverage
 ### Docker
 ```bash
 # Build the image
-docker build -t base44-platform .
+docker build -t Gambino-platform .
 
 # Run the container
-docker run -p 3000:3000 base44-platform
+docker run -p 3000:3000 Gambino-platform
 ```
 
 ## 📈 Performance
@@ -274,9 +274,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Deployment Guide](./docs/deployment.md)
 
 ### Getting Help
-- **Email**: support@base44.com
-- **Discord**: [Join our community](https://discord.gg/base44)
-- **Documentation**: [docs.base44.com](https://docs.base44.com)
+- **Email**: support@Gambino.com
+- **Discord**: [Join our community](https://discord.gg/Gambino)
+- **Documentation**: [docs.Gambino.com](https://docs.Gambino.com)
 
 ## 🎉 Acknowledgments
 
@@ -287,6 +287,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ by the BASE44 Team**
+**Built with ❤️ by the Gambino Team**
 
 *Empowering smart betting decisions through data-driven insights.* 

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# BASE44 Platform Installation Script
-# This script will help you set up the BASE44 platform on your local machine
+# Gambino Platform Installation Script
+# This script will help you set up the Gambino platform on your local machine
 
-echo "🚀 Welcome to BASE44 Platform Installation"
+echo "🚀 Welcome to Gambino Platform Installation"
 echo "=========================================="
 
 # Check if Node.js is installed

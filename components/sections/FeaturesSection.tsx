@@ -173,7 +173,7 @@ export function FeaturesSection() {
               Ready to Start Winning?
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Join thousands of successful bettors who trust BASE44 for their betting decisions. 
+              Join thousands of successful bettors who trust Gambino for their betting decisions. 
               Start your free trial today and experience the difference.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

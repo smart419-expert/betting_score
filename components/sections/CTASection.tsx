@@ -30,7 +30,7 @@ export function CTASection() {
               <span className="text-yellow-300">Betting Game?</span>
             </h2>
             <p className="text-xl text-primary-100 max-w-3xl mx-auto mb-8">
-              Join thousands of successful bettors who trust BASE44 for their betting decisions. 
+              Join thousands of successful bettors who trust Gambino for their betting decisions. 
               Start your free trial today and experience the power of data-driven insights.
             </p>
           </motion.div>

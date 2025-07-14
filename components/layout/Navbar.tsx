@@ -23,9 +23,9 @@ export function Navbar({ user }: { user?: { name: string; avatar?: string } }) {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">B</span>
+              <span className="text-white font-bold text-lg">G</span>
             </div>
-            <span className="text-xl font-bold text-gray-900 tracking-tight">BASE44</span>
+            <span className="text-xl font-bold text-gray-900 tracking-tight">Gambino</span>
           </Link>
 
           {/* Desktop Nav */}

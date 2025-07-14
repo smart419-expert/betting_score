@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import Navbar from './components/navbar';
 import { CheckCircleIcon, ExclamationTriangleIcon, MegaphoneIcon, UserGroupIcon, ChartBarIcon, GiftIcon, BoltIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 
 const TIER_CONFIG = [
@@ -11,7 +12,7 @@ const TIER_CONFIG = [
     badge: { text: 'Tier 1: Basic', color: 'bg-slate-600' },
     highlight: 'bg-slate-700 text-white border-slate-600',
     dashboard: {
-      title: 'Welcome to BetVerse AI',
+      title: 'Welcome to Gambino',
       subtitle: 'Upgrade your tier to unlock more features.',
       notifications: [
         {
@@ -99,7 +100,7 @@ const TIER_CONFIG = [
       subtitle: 'Your intelligent betting companion.',
       notifications: [
         {
-          icon: <MegaphoneIcon className="w-5 h-5 text-blue-300" />, title: 'Welcome to BetVerse AI!',
+          icon: <MegaphoneIcon className="w-5 h-5 text-blue-300" />, title: 'Welcome to Gambino!',
           desc: 'Your intelligent prediction platform is ready. Explore AI-generated tips and signals.',
           color: 'bg-blue-900 border-blue-700'
         },
@@ -239,7 +240,7 @@ function Notifications({ notifications }: { notifications: any[] }) {
       <h2 className="text-xl font-bold mb-2">Notifications</h2>
       <div className="space-y-2">
         {notifications.map((n, i) => (
-          <div key={i} className={`flex items-start gap-3 p-4 rounded-lg border ${n.color}`}> 
+          <div key={i} className={`flex items-start gap-3 p-4 rounded-lg border ${n.color}`}>
             <div className="mt-1">{n.icon}</div>
             <div>
               <div className="font-semibold text-white">{n.title}</div>
@@ -379,40 +380,43 @@ export default function DashboardPage() {
   const dash = tierData.dashboard;
 
   return (
-    <div className="space-y-6">
-      <TierSwitcher currentTier={currentTier} setTier={setTier} />
-      <h1 className="text-4xl font-bold text-white mb-1">{dash.title}</h1>
-      <p className="text-gray-300 mb-6">{dash.subtitle}</p>
-      <Notifications notifications={dash.notifications} />
-      <StatsCards stats={dash.stats} />
-      {/* Only show the bottom row for Tier 2, otherwise show the upper section */}
-      {currentTier === 1 ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          <div className="h-full flex flex-col justify-stretch">
-            <KeyContentCard />
+    <div>
+      <Navbar location="Feed" />
+      <div className="space-y-6 bg-[#1b1d1e] text-foreground min-h-screen px-[4rem] py-[4rem]">
+        <TierSwitcher currentTier={currentTier} setTier={setTier} />
+        <h1 className="text-4xl font-bold text-white mb-1">{dash.title}</h1>
+        <p className="text-gray-300 mb-6">{dash.subtitle}</p>
+        <Notifications notifications={dash.notifications} />
+        <StatsCards stats={dash.stats} />
+        {/* Only show the bottom row for Tier 2, otherwise show the upper section */}
+        {currentTier === 1 ? (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            <div className="h-full flex flex-col justify-stretch">
+              <KeyContentCard />
+            </div>
+            <div className="h-full flex flex-col justify-stretch">
+              <FeatureCard
+                feature={{
+                  title: <span className="text-green-400 font-bold text-lg flex items-center gap-2"><svg className="w-5 h-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.036 6.29a1 1 0 00.95.69h6.631c.969 0 1.371 1.24.588 1.81l-5.37 3.905a1 1 0 00-.364 1.118l2.036 6.29c.3.921-.755 1.688-1.54 1.118l-5.37-3.905a1 1 0 00-1.175 0l-5.37 3.905c-.784.57-1.838-.197-1.54-1.118l2.036-6.29a1 1 0 00-.364-1.118L2.342 11.727c-.783-.57-.38-1.81.588-1.81h6.631a1 1 0 00.95-.69l2.036-6.29z" /></svg>Upgrade to Pro (Tier 3)</span>,
+                  desc: <span className="text-green-300">Access BetCast, Audio Spaces, and advanced features.</span>,
+                  color: 'bg-[#181A20] border-green-700',
+                }}
+                showUpgradeBtn={true}
+                upgradeText="Upgrade to Pro - $39/month"
+              />
+            </div>
           </div>
-          <div className="h-full flex flex-col justify-stretch">
-            <FeatureCard
-              feature={{
-                title: <span className="text-green-400 font-bold text-lg flex items-center gap-2"><svg className="w-5 h-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.036 6.29a1 1 0 00.95.69h6.631c.969 0 1.371 1.24.588 1.81l-5.37 3.905a1 1 0 00-.364 1.118l2.036 6.29c.3.921-.755 1.688-1.54 1.118l-5.37-3.905a1 1 0 00-1.175 0l-5.37 3.905c-.784.57-1.838-.197-1.54-1.118l2.036-6.29a1 1 0 00-.364-1.118L2.342 11.727c-.783-.57-.38-1.81.588-1.81h6.631a1 1 0 00.95-.69l2.036-6.29z" /></svg>Upgrade to Pro (Tier 3)</span>,
-                desc: <span className="text-green-300">Access BetCast, Audio Spaces, and advanced features.</span>,
-                color: 'bg-[#181A20] border-green-700',
-              }}
-              showUpgradeBtn={true}
-              upgradeText="Upgrade to Pro - $39/month"
-            />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            <div className="h-full">
+              <FeatureCard feature={dash.featureCard} showUpgradeBtn={currentTier === 0} />
+            </div>
+            <div className="h-full">
+              {dash.fixtures && <LiveFixtures />}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          <div className="h-full">
-            <FeatureCard feature={dash.featureCard} showUpgradeBtn={currentTier === 0} />
-          </div>
-          <div className="h-full">
-            {dash.fixtures && <LiveFixtures />}
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 } 
