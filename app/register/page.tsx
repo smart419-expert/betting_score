@@ -17,7 +17,10 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
+  const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();
+
   const handleSubmit = async (e: React.FormEvent) => {
+
     e.preventDefault();
     setLoading(true);
 
@@ -55,12 +58,15 @@ export default function RegisterPage() {
   };
 
   const handleGoogleSignIn = async () => {
-    setLoading(true);
     const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
     if (error) {
       toast.error(error.message);
-      setLoading(false);
+      return;
     }
+    toast.success('Registration successful!');
+    setTimeout(() => {
+      router.push('/login');
+    }, 2500);
   };
 
   return (

@@ -3,6 +3,8 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { useState } from 'react'
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface ProvidersProps {
   children: React.ReactNode
@@ -22,6 +24,14 @@ export function Providers({ children }: ProvidersProps) {
         },
       })
   )
+
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
+      window.history.replaceState(null, '', window.location.pathname);
+      router.push('/dashboard');
+    }
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>

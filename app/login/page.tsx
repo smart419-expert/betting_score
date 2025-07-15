@@ -42,7 +42,10 @@ export default function LoginPage() {
     if (error) {
       toast.error(error.message);
       setLoading(false);
+      return;
     }
+    toast.success('Login successful!');
+    router.push('/dashboard');
   };
 
   return (
