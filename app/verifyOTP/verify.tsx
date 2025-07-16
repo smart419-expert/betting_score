@@ -1,6 +1,6 @@
 "use client"
 
-import { supabase } from "@/src/supabaseClient";
+import { supabase } from "@/lib/supabase";
 import toast from "react-hot-toast";
 
 const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();

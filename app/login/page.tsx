@@ -1,4 +1,3 @@
-// app/login/page.tsx
 'use client'
 
 import Link from "next/link";
@@ -7,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { supabase } from '@/src/supabaseClient';
+import { supabase } from '@/lib/supabase';
 import toast from "react-hot-toast";
 
 export default function LoginPage() {
@@ -45,7 +44,9 @@ export default function LoginPage() {
       return;
     }
     toast.success('Login successful!');
-    router.push('/dashboard');
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 1500);
   };
 
   return (

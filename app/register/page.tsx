@@ -7,7 +7,7 @@ import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/src/supabaseClient";
+import { supabase } from "@/lib/supabase";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -53,7 +53,9 @@ export default function RegisterPage() {
       return;
     }
     toast.success('Registration successful!');
-    router.push('/dashboard');
+    setTimeout(() => {
+      router.push('/login');
+    }, 1500);
   };
 
   return (

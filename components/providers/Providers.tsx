@@ -3,7 +3,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { useState, useEffect, createContext, useContext } from 'react'
-import { supabase } from '@/src/supabaseClient'
+import { supabase } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
 import { useRouter, usePathname } from 'next/navigation'
 
