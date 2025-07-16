@@ -1,5 +1,30 @@
 {
-  "node": {},
+  "node": {
+    "0095a2d29f8184a4558d2112e510c25d5116678b": {
+      "workers": {
+        "app/dashboard/tips/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22F%3A%5C%5CFull%20stack%20dev%5C%5CBetting-score%5C%5Capp%5C%5Cdashboard%5C%5CAPIdata%5C%5CfootballApi.ts%22%2C%5B%22fetchOdds%22%2C%22fetchLiveMatches%22%2C%22fetchLeagues%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/tips/page": "action-browser"
+      }
+    },
+    "24f79f6feb6ed12eb450597d1345f961dc69d6fe": {
+      "workers": {
+        "app/dashboard/tips/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22F%3A%5C%5CFull%20stack%20dev%5C%5CBetting-score%5C%5Capp%5C%5Cdashboard%5C%5CAPIdata%5C%5CfootballApi.ts%22%2C%5B%22fetchOdds%22%2C%22fetchLiveMatches%22%2C%22fetchLeagues%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/tips/page": "action-browser"
+      }
+    },
+    "58fbca40298d7d7d6bceb6c7a7a44188bd828c34": {
+      "workers": {
+        "app/dashboard/tips/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22F%3A%5C%5CFull%20stack%20dev%5C%5CBetting-score%5C%5Capp%5C%5Cdashboard%5C%5CAPIdata%5C%5CfootballApi.ts%22%2C%5B%22fetchOdds%22%2C%22fetchLiveMatches%22%2C%22fetchLeagues%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/dashboard/tips/page": "action-browser"
+      }
+    }
+  },
   "edge": {},
-  "encryptionKey": "+5499JUOGkaFTtEzdO1SH/LbogluBKGLo5OGCFsmWfs="
+  "encryptionKey": "fN/fDCffGZZJ/Z89Md8oMUJtWneZ9bAtYn/HRcsbK1s="
 }

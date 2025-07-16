@@ -11,7 +11,7 @@ import {
 const steps = [
   {
     icon: UserPlusIcon,
-    title: 'Join Gambino',
+    title: 'Join BASE44',
     description: 'Sign up for free and start exploring our platform. No credit card required for the trial.',
     details: [
       'Quick 2-minute registration',
@@ -64,11 +64,11 @@ export function HowItWorksSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            How Gambino{' '}
+            How BASE44{' '}
             <span className="text-gradient">Works</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Getting started with Gambino is simple. Follow these four easy steps to begin 
+            Getting started with BASE44 is simple. Follow these four easy steps to begin 
             your journey towards smarter betting decisions.
           </p>
         </motion.div>
@@ -135,7 +135,7 @@ export function HowItWorksSection() {
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               Join thousands of successful bettors who have already discovered the power 
-              of data-driven betting with Gambino.
+              of data-driven betting with BASE44.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="btn-primary">

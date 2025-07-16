@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react';
-import Navbar from './components/navbar';
 import { CheckCircleIcon, ExclamationTriangleIcon, MegaphoneIcon, UserGroupIcon, ChartBarIcon, GiftIcon, BoltIcon, LockClosedIcon } from '@heroicons/react/24/outline';
+import { Navbar } from './components/navbar';
 
 const TIER_CONFIG = [
   {
@@ -12,7 +12,7 @@ const TIER_CONFIG = [
     badge: { text: 'Tier 1: Basic', color: 'bg-slate-600' },
     highlight: 'bg-slate-700 text-white border-slate-600',
     dashboard: {
-      title: 'Welcome to Gambino',
+      title: 'Welcome to Gambino AI',
       subtitle: 'Upgrade your tier to unlock more features.',
       notifications: [
         {
@@ -100,7 +100,7 @@ const TIER_CONFIG = [
       subtitle: 'Your intelligent betting companion.',
       notifications: [
         {
-          icon: <MegaphoneIcon className="w-5 h-5 text-blue-300" />, title: 'Welcome to Gambino!',
+          icon: <MegaphoneIcon className="w-5 h-5 text-blue-300" />, title: 'Welcome to Gambino AI!',
           desc: 'Your intelligent prediction platform is ready. Explore AI-generated tips and signals.',
           color: 'bg-blue-900 border-blue-700'
         },
@@ -237,7 +237,7 @@ function TierSwitcher({ currentTier, setTier }: { currentTier: number, setTier: 
 function Notifications({ notifications }: { notifications: any[] }) {
   return (
     <div className="mb-8">
-      <h2 className="text-xl font-bold mb-2">Notifications</h2>
+      <h2 className="text-xl font-bold mb-2 text-white">Notifications</h2>
       <div className="space-y-2">
         {notifications.map((n, i) => (
           <div key={i} className={`flex items-start gap-3 p-4 rounded-lg border ${n.color}`}>
@@ -270,7 +270,7 @@ function StatsCards({ stats }: { stats: any[] }) {
 
 function FeatureCard({ feature, showUpgradeBtn, upgradeText }: { feature: any, showUpgradeBtn?: boolean, upgradeText?: string }) {
   return (
-    <div className={`rounded-xl p-6 mb-6 border ${feature.color}] flex flex-col justify-start`}>
+    <div className={`rounded-xl p-6 mb-6 border ${feature.color}] flex flex-col justify-start text-[#d7d5d5]`}>
       <div className="text-lg font-bold mb-2 flex items-center gap-2">{feature.title}</div>
       <div className="text-sm mb-4">{feature.desc}</div>
       {showUpgradeBtn && (
@@ -380,15 +380,15 @@ export default function DashboardPage() {
   const dash = tierData.dashboard;
 
   return (
-    <div>
-      <Navbar location="Feed" />
-      <div className="space-y-6 bg-[#1b1d1e] text-foreground min-h-screen px-[4rem] py-[4rem]">
+    <div className='jsx-38920fb5c616e4c5 relative min-h-screen flex flex-col bg-gradient-to-br from-[#101522] via-[#181d2a] to-[#1a2236] text-white overflow-hidden'>
+      <Navbar name="Dashboard" />
+      <div className="space-y-6 text-foreground min-h-screen px-[4rem] py-[4rem]">
         <TierSwitcher currentTier={currentTier} setTier={setTier} />
         <h1 className="text-4xl font-bold text-white mb-1">{dash.title}</h1>
         <p className="text-gray-300 mb-6">{dash.subtitle}</p>
         <Notifications notifications={dash.notifications} />
         <StatsCards stats={dash.stats} />
-        {/* Only show the bottom row for Tier 2, otherwise show the upper section */}
+
         {currentTier === 1 ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
             <div className="h-full flex flex-col justify-stretch">

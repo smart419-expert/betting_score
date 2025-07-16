@@ -8,6 +8,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/src/supabaseClient";
+import { sendOtp, verifyAndSignUp } from '../verifyOTP/verify';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -16,11 +17,10 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-
-  const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();
+  const [sentOtp, setSentOtp] = useState(false);
+  const [otpInput, setOtpInput] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-
     e.preventDefault();
     setLoading(true);
 
@@ -31,7 +31,7 @@ export default function RegisterPage() {
       return;
     }
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: { data: { name } }
@@ -43,18 +43,29 @@ export default function RegisterPage() {
       return;
     }
 
-    await supabase.from('users').insert([
-      {
-        email: email,
-        name: name,
-        created_at: new Date().toISOString()
-      },
-    ])
-    setLoading(false);
-    toast.success('Account created successfully! Please check your email for verification.');
-    setTimeout(() => {
-      router.push('/login');
-    }, 2500);
+    const otpSent = await sendOtp({ email });
+    if (otpSent) {
+      const verified = await verifyAndSignUp({ email, password, name, otpInput });
+      if (verified) {
+        toast.success('Account created successfully! Please check your email for verification.');
+        setTimeout(() => {
+          router.push('/login');
+        }, 2500);
+      }
+    }
+
+    // await supabase.from('users').insert([
+    //   {
+    //     email: email,
+    //     name: name,
+    //     created_at: new Date().toISOString()
+    //   },
+    // ])
+    // setLoading(false);
+    // toast.success('Account created successfully! Please check your email for verification.');
+    // setTimeout(() => {
+    //   router.push('/login');
+    // }, 2500);
   };
 
   const handleGoogleSignIn = async () => {
@@ -63,6 +74,7 @@ export default function RegisterPage() {
       toast.error(error.message);
       return;
     }
+
     toast.success('Registration successful!');
     setTimeout(() => {
       router.push('/login');
@@ -84,61 +96,85 @@ export default function RegisterPage() {
           <FcGoogle className="w-5 h-5" />
           {loading ? 'Redirecting...' : 'Sign up with Google'}
         </button>
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-white mb-1">Name</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-white mb-1">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-white mb-1">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="confirm" className="block text-sm font-medium text-white mb-1">Confirm Password</label>
-            <input
-              type="password"
-              id="confirm"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-              className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-medium rounded-lg hover:from-green-500 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? 'Creating account...' : 'Create Account'}
-          </button>
-          <div className="mt-4 text-center text-white">
-            Already have an account? <Link href="/login" className="text-blue-500 hover:text-blue-600">Log in</Link>
-          </div>
-        </form>
+        {
+          sentOtp !== false ? (
+            <form onSubmit={handleSubmit} className="w-full max-w-sm">
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-sm font-medium text-white mb-1">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-sm font-medium text-white mb-1">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="password" className="block text-sm font-medium text-white mb-1">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="confirm" className="block text-sm font-medium text-white mb-1">Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirm"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-medium rounded-lg hover:from-green-500 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? 'Creating account...' : 'Create Account'}
+              </button>
+              <div className="mt-4 text-center text-white">
+                Already have an account? <Link href="/login" className="text-blue-500 hover:text-blue-600">Log in</Link>
+              </div>
+            </form>) : (<form onSubmit={handleSubmit} className="w-full max-w-sm">
+              <div className="mb-4">
+                <label htmlFor="confirm" className="block text-sm font-medium text-white mb-1">Verify Code</label>
+                <input
+                  type="password"
+                  id="confirm"
+                  value={otpInput}
+                  onChange={(e) => setOtpInput(e.target.value)}
+                  className="w-full px-3 py-2 bg-[#282C34] border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-medium rounded-lg hover:from-green-500 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Verify Code
+              </button>
+              <div className="mt-4 text-center text-white">
+                <div className="text-blue-500 hover:text-blue-600">Resend Code</div>
+              </div>
+            </form>)
+        }
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, UserCircleIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -23,8 +22,10 @@ export function Navbar({ user }: { user?: { name: string; avatar?: string } }) {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/favicon.ico" alt="Gambino" width={32} height={32} />
-            <span className="text-xl font-bold text-gray-900 tracking-tight">Gambino</span>
+            <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">B</span>
+            </div>
+            <span className="text-xl font-bold text-gray-900 tracking-tight">BASE44</span>
           </Link>
 
           {/* Desktop Nav */}

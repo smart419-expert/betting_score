@@ -11,13 +11,13 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [tier, setTier] = useState(0);
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Mobile sidebar */}
       <MobileSidebar open={sidebarOpen} setOpen={setSidebarOpen} />
-      
-      {/* Desktop sidebar */}
+        
       <Sidebar />
       
       {/* Main content */}
