@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { CheckCircleIcon, ExclamationTriangleIcon, MegaphoneIcon, UserGroupIcon, ChartBarIcon, GiftIcon, BoltIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 import { Navbar } from './components/navbar';
+import { supabase } from '@/lib/supabase';
 
 const TIER_CONFIG = [
   {
