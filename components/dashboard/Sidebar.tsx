@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   HomeIcon,
   ChartBarIcon,
@@ -19,11 +19,14 @@ import {
   WalletIcon,
   ChatBubbleLeftRightIcon,
   StarIcon,
+  ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
+import { supabase } from '@/lib/supabase';
+import { toast } from 'react-hot-toast';
 
 const navLinks = [
-  { name: 'Feed', href: '/dashboard/analytics', icon: HomeIcon },
+  { name: 'Feed', href: '/dashboard/feed', icon: HomeIcon },
   { name: 'Dashboard', href: '/dashboard', icon: ChartBarIcon },
   { name: 'Sports Preview', href: '/dashboard/tips', icon: TrophyIcon },
   { name: 'Forex Preview', href: '/dashboard/forex', icon: CurrencyDollarIcon },
@@ -37,6 +40,7 @@ const navLinks = [
 const bottomLinks = [
   { name: 'Settings', href: '/dashboard/settings', icon: Cog6ToothIcon },
   { name: 'My Account', href: '/dashboard/support', icon: LifebuoyIcon },
+  { name: 'Log out', href: '/', icon: ArrowRightOnRectangleIcon },
 ];
 
 const roles = [
@@ -48,7 +52,7 @@ const roles = [
 export function Sidebar() {
   const pathname = usePathname();
   const [role, setRole] = useState('free');
-
+  const router = useRouter();
   return (
     <aside className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col bg-gradient-to-b from-[#232b3a]/90 to-[#181A20]/95 backdrop-blur-xl border-r border-white/10 shadow-2xl">
       <div className="flex flex-col h-full">
@@ -125,6 +129,17 @@ export function Sidebar() {
                       : 'text-white/70 hover:text-white hover:bg-white/10',
                     'flex items-center gap-3 px-4 py-2 rounded-lg font-semibold transition-all duration-150'
                   )}
+                  onClick={() => {
+                    if (link.name === 'Log out') {
+                      supabase.auth.signOut();
+                      localStorage.removeItem('access_token');
+                      localStorage.removeItem('refresh_token');
+                      toast.success('Logged out successfully');
+                      setTimeout(() => {
+                        router.push('/');
+                      }, 2000);
+                    }
+                  }}
                 >
                   <link.icon className="w-6 h-6" />
                   <span>{link.name}</span>
@@ -135,12 +150,12 @@ export function Sidebar() {
         </div>
 
         {/* Wallet Card */}
-          <div className="mx-4 mb-6 mt-2">
-            <div className="rounded-xl bg-gradient-to-br from-blue-900/80 to-purple-900/80 border border-blue-400/30 p-4 flex items-center gap-3 shadow-xl backdrop-blur-md">
-              <WalletIcon className="w-6 h-6 text-blue-400" />
-              <span className="text-white font-semibold">Wallet: <span className="text-blue-300">R0</span></span>
-            </div>
+        <div className="mx-4 mb-6 mt-2">
+          <div className="rounded-xl bg-gradient-to-br from-blue-900/80 to-purple-900/80 border border-blue-400/30 p-4 flex items-center gap-3 shadow-xl backdrop-blur-md">
+            <WalletIcon className="w-6 h-6 text-blue-400" />
+            <span className="text-white font-semibold">Wallet: <span className="text-blue-300">R0</span></span>
           </div>
+        </div>
       </div>
     </aside>
   );

@@ -52,7 +52,7 @@ export default function LoginPage() {
     <div className="flex items-center min-h-[93vh] justify-center bg-black">
       <div className="w-full max-w-md mx-auto rounded-3xl shadow-2xl bg-[#181A20] px-8 py-10 flex flex-col items-center">
         {/* Logo/Icon */}
-        <Image src="/favicon.ico" alt="Gambino" width={32} height={32} />
+        <Image src="/apple-touch-icon.png" alt="Gambino" width={100} height={100} />
         <h1 className="text-2xl font-bold text-white mb-1 text-center">Welcome to Gambino</h1>
         <p className="text-gray-600 mb-6 text-center">Log in to your account</p>
         <button

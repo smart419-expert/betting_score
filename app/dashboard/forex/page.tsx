@@ -151,10 +151,6 @@ export default function ForexPreviewPage() {
             <h1 className="text-3xl font-bold text-white mb-1">Forex Signals & Previews</h1>
             <p className="text-gray-300">Live AI-powered forex signals with risk calculator and performance charts.</p>
           </div>
-          <div className="flex gap-2">
-            <button onClick={() => setViewMode('table')} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${viewMode === 'table' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white'}`}><TableCellsIcon className="w-5 h-5" />Table View</button>
-            <button onClick={() => setViewMode('card')} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${viewMode === 'card' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white'}`}><ViewColumnsIcon className="w-5 h-5" />Card View</button>
-          </div>
         </div>
 
         {/* Search & Filters */}
@@ -196,6 +192,10 @@ export default function ForexPreviewPage() {
               className="accent-blue-500"
             />
             <span className="text-gray-300 text-xs">{confidenceRange[0]}% - {confidenceRange[1]}%</span>
+          </div>
+          <div className="flex gap-2">
+            <button onClick={() => setViewMode('table')} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${viewMode === 'table' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white'}`}><TableCellsIcon className="w-5 h-5" />Table View</button>
+            <button onClick={() => setViewMode('card')} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${viewMode === 'card' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white'}`}><ViewColumnsIcon className="w-5 h-5" />Card View</button>
           </div>
         </div>
 

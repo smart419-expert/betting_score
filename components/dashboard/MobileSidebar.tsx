@@ -20,6 +20,7 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/24/outline'
 import { clsx } from 'clsx'
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
@@ -94,10 +95,8 @@ export function MobileSidebar({ open, setOpen }: MobileSidebarProps) {
                 {/* Logo */}
                 <div className="flex h-16 shrink-0 items-center">
                   <Link href="/dashboard" className="flex items-center space-x-2">
-                    <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">B</span>
-                    </div>
-                    <span className="text-xl font-bold text-gray-900">BASE44</span>
+                    <Image src="/favicon.ico" alt="Gambino" width={32} height={32} />
+                    <span className="text-xl font-bold text-gray-900">Gambino</span>
                   </Link>
                 </div>
 

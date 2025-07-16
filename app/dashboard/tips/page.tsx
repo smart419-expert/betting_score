@@ -136,65 +136,65 @@ export default function SportsPreviewPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function loadTips() {
-      setLoading(true);
-      setError(null);
-      try {
-        const matches = await fetchLiveMatches();
-        // For each match, fetch odds and normalize to BettingTip
-        const tipsData: BettingTip[] = await Promise.all(matches.slice(0, 10).map(async (match: any) => {
-          let odds = 0;
-          let tipType = '1X2';
-          let tipSpecific = 'Home Win';
-          let rationale = 'Data-driven suggestion based on team form, odds, and stats.';
-          let confidence = { level: 'Medium', percentage: 75 };
-          try {
-            const oddsData = await fetchOdds(match.fixture.id);
-            // Example: get home win odds from bookmaker 0
-            if (oddsData && oddsData[0] && oddsData[0].bookmakers[0]) {
-              const homeWin = oddsData[0].bookmakers[0].bets[0].values.find((v: any) => v.value === 'Home');
-              if (homeWin) {
-                odds = homeWin.odd;
-                tipType = oddsData[0].bookmakers[0].bets[0].name;
-                tipSpecific = 'Home Win';
-                rationale = `Home win odds: ${homeWin.odd}`;
-                confidence = { level: 'High', percentage: 90 };
-              }
-            }
-          } catch (e) {
-            // fallback
-          }
-          return {
-            id: match.fixture.id.toString(),
-            league: match.league.name,
-            confidence,
-            match: {
-              homeTeam: match.teams.home.name,
-              awayTeam: match.teams.away.name,
-              date: match.fixture.date.split('T')[0],
-              time: match.fixture.date.split('T')[1]?.slice(0,5) || '',
-              status: match.fixture.status.long,
-            },
-            tip: {
-              type: tipType,
-              specific: tipSpecific,
-              odds: Number(odds) || 1.5,
-              rationale,
-            },
-            generatedAt: new Date().toLocaleString(),
-          };
-        }));
-        setTips(tipsData);
-      } catch (e: any) {
-        setError('Failed to load live tips. Showing mock data.');
-        setTips(mockTips);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadTips();
-  }, []);
+  // useEffect(() => {
+  //   async function loadTips() {
+  //     setLoading(true);
+  //     setError(null);
+  //     try {
+  //       const matches = await fetchLiveMatches();
+  //       // For each match, fetch odds and normalize to BettingTip
+  //       const tipsData: BettingTip[] = await Promise.all(matches.slice(0, 10).map(async (match: any) => {
+  //         let odds = 0;
+  //         let tipType = '1X2';
+  //         let tipSpecific = 'Home Win';
+  //         let rationale = 'Data-driven suggestion based on team form, odds, and stats.';
+  //         let confidence = { level: 'Medium', percentage: 75 };
+  //         try {
+  //           const oddsData = await fetchOdds(match.fixture.id);
+  //           // Example: get home win odds from bookmaker 0
+  //           if (oddsData && oddsData[0] && oddsData[0].bookmakers[0]) {
+  //             const homeWin = oddsData[0].bookmakers[0].bets[0].values.find((v: any) => v.value === 'Home');
+  //             if (homeWin) {
+  //               odds = homeWin.odd;
+  //               tipType = oddsData[0].bookmakers[0].bets[0].name;
+  //               tipSpecific = 'Home Win';
+  //               rationale = `Home win odds: ${homeWin.odd}`;
+  //               confidence = { level: 'High', percentage: 90 };
+  //             }
+  //           }
+  //         } catch (e) {
+  //           // fallback
+  //         }
+  //         return {
+  //           id: match.fixture.id.toString(),
+  //           league: match.league.name,
+  //           confidence,
+  //           match: {
+  //             homeTeam: match.teams.home.name,
+  //             awayTeam: match.teams.away.name,
+  //             date: match.fixture.date.split('T')[0],
+  //             time: match.fixture.date.split('T')[1]?.slice(0,5) || '',
+  //             status: match.fixture.status.long,
+  //           },
+  //           tip: {
+  //             type: tipType,
+  //             specific: tipSpecific,
+  //             odds: Number(odds) || 1.5,
+  //             rationale,
+  //           },
+  //           generatedAt: new Date().toLocaleString(),
+  //         };
+  //       }));
+  //       setTips(tipsData);
+  //     } catch (e: any) {
+  //       setError('Failed to load live tips. Showing mock data.');
+  //       setTips(mockTips);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   loadTips();
+  // }, []);
 
   // Filtered tips based on search and confidence
   const filteredTips = tips.filter(tip => {

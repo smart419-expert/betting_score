@@ -8,7 +8,7 @@ const testimonials = [
     name: 'David M.',
     role: 'Professional Bettor',
     avatar: '/avatars/david.jpg',
-    content: 'BASE44 has completely transformed my betting strategy. The AI-powered tips are incredibly accurate, and the bet builder lets me customize everything to my risk tolerance. I\'ve seen a 40% increase in my ROI since joining.',
+    content: 'Gambino has completely transformed my betting strategy. The AI-powered tips are incredibly accurate, and the bet builder lets me customize everything to my risk tolerance. I\'ve seen a 40% increase in my ROI since joining.',
     rating: 5,
     location: 'Johannesburg, SA'
   },
@@ -24,7 +24,7 @@ const testimonials = [
     name: 'Michael T.',
     role: 'Sports Enthusiast',
     avatar: '/avatars/michael.jpg',
-    content: 'As someone new to betting, BASE44 has been a game-changer. The explanations are easy to understand, and the confidence scores help me make informed decisions. The free trial convinced me to upgrade.',
+    content: 'As someone new to betting, Gambino has been a game-changer. The explanations are easy to understand, and the confidence scores help me make informed decisions. The free trial convinced me to upgrade.',
     rating: 5,
     location: 'Durban, SA'
   },
@@ -40,7 +40,7 @@ const testimonials = [
     name: 'John D.',
     role: 'Weekend Bettor',
     avatar: '/avatars/john.jpg',
-    content: 'Perfect for weekend betting! The tips are ready when I need them, and the mobile app makes it super convenient. I\'ve been consistently profitable since using BASE44.',
+    content: 'Perfect for weekend betting! The tips are ready when I need them, and the mobile app makes it super convenient. I\'ve been consistently profitable since using Gambino.',
     rating: 5,
     location: 'Port Elizabeth, SA'
   },
@@ -72,7 +72,7 @@ export function TestimonialsSection() {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Join thousands of satisfied users who have transformed their betting 
-            experience with BASE44's data-driven insights.
+            experience with Gambino's data-driven insights.
           </p>
           
           {/* Overall Rating */}
