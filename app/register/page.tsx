@@ -97,7 +97,7 @@ export default function RegisterPage() {
           {loading ? 'Redirecting...' : 'Sign up with Google'}
         </button>
         {
-          sentOtp !== false ? (
+          sentOtp === false ? (
             <form onSubmit={handleSubmit} className="w-full max-w-sm">
               <div className="mb-4">
                 <label htmlFor="name" className="block text-sm font-medium text-white mb-1">Name</label>
