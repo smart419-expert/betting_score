@@ -17,11 +17,15 @@ export async function updateUserProfile(userId: string, data: any) {
 
 export async function uploadAvatar(userId: string, file: File) {
   const fileExt = file.name.split('.').pop();
-  const filePath = `avatars/${userId}.${fileExt}`;
+  const filePath = `${userId}.${fileExt}`;
   const { error: uploadError } = await supabase.storage.from('avatars').upload(filePath, file, { upsert: true });
   if (uploadError) return { error: uploadError };
   const { data } = supabase.storage.from('avatars').getPublicUrl(filePath);
-  return { url: data.publicUrl };
+  const publicUrl = data.publicUrl;
+  // Update the user's avatar column in the users table
+  const { error: updateError } = await supabase.from('users').update({ avatar: publicUrl }).eq('id', userId);
+  if (updateError) return { error: updateError };
+  return { url: publicUrl };
 }
 
 export async function getUserStats(userId: string) {
