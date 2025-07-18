@@ -10,8 +10,6 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "Features", href: "#features" },
   { name: "Pricing", href: "#pricing" },
-  { name: "Community", href: "/community" },
-  { name: "Help", href: "/help" },
 ];
 
 export function Navbar({ user }: { user?: { name: string; avatar?: string } }) {

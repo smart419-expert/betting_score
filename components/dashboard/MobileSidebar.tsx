@@ -37,7 +37,6 @@ const navigation = [
 const secondaryNavigation = [
   { name: 'Profile', href: '/dashboard/profile', icon: UserIcon },
   { name: 'Settings', href: '/dashboard/settings', icon: Cog6ToothIcon },
-  { name: 'Help', href: '/dashboard/help', icon: QuestionMarkCircleIcon },
 ]
 
 interface MobileSidebarProps {
