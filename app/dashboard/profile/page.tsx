@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import {
+import { 
   UserCircleIcon, Cog6ToothIcon, BellIcon, ShieldCheckIcon, ChartBarIcon, TrophyIcon, CurrencyDollarIcon, StarIcon, PencilIcon, CameraIcon, KeyIcon, EnvelopeIcon, PhoneIcon, GlobeAltIcon, HeartIcon, EyeIcon, EyeSlashIcon, CheckCircleIcon, XCircleIcon, ClockIcon
 } from '@heroicons/react/24/outline';
 import { Navbar } from '../components/navbar';
@@ -78,7 +78,7 @@ export default function ProfilePage() {
       setLoading(true);
       const { url, error } = await uploadAvatar(user.id, file);
       setLoading(false);
-      if (url) setUser((u: any) => ({ ...u, avatar: url }));
+      if (url) setUser((u: any) => ({ ...u, avatars: url }));
       if (error) setError(error.message);
     }
   };
@@ -96,7 +96,14 @@ export default function ProfilePage() {
     setLoading(false);
     if (error) setError(error.message);
     else {
-      setUser((u: any) => ({ ...u, ...editForm }));
+      // Update local state with the correct field mapping
+      setUser((u: any) => ({ 
+        ...u, 
+        name: editForm.name,
+        phone: editForm.phone,
+        country: editForm.residence, // Map residence to country
+        bio: editForm.bio
+      }));
       setIsEditing(false);
     }
   };
@@ -175,8 +182,8 @@ export default function ProfilePage() {
                       <div className="w-24 h-24 bg-gray-700 rounded-full flex items-center justify-center text-3xl mb-4 mx-auto overflow-hidden">
                         {avatarPreview ? (
                           <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover rounded-full" />
-                        ) : user.avatar ? (
-                          <img src={user.avatar} alt="Avatar" className="w-full h-full object-cover rounded-full" />
+                        ) : user.avatars ? (
+                          <img src={user.avatars} alt="Avatar" className="w-full h-full object-cover rounded-full" />
                         ) : (
                           <UserCircleIcon className="w-20 h-20 text-gray-400" />
                         )}
@@ -324,16 +331,16 @@ export default function ProfilePage() {
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-12 text-sm text-gray-400">May</div>
-                      <div className="flex-1 bg-gray-800 rounded-full h-4">
-                        <div 
-                          className="bg-green-500 h-4 rounded-full transition-all" 
+                        <div className="flex-1 bg-gray-800 rounded-full h-4">
+                          <div 
+                            className="bg-green-500 h-4 rounded-full transition-all" 
                           style={{ width: `${(20 / (20 + 2)) * 100}%` }}
-                        ></div>
-                      </div>
-                      <div className="text-sm text-white font-semibold">
+                          ></div>
+                        </div>
+                        <div className="text-sm text-white font-semibold">
                         20W-2L
-                      </div>
-                      <div className="text-sm text-green-400 font-semibold">
+                        </div>
+                        <div className="text-sm text-green-400 font-semibold">
                         $1200
                       </div>
                     </div>
@@ -347,7 +354,7 @@ export default function ProfilePage() {
                       </div>
                       <div className="text-sm text-white font-semibold">
                         16W-4L
-                      </div>
+                        </div>
                       <div className="text-sm text-green-400 font-semibold">
                         $890
                       </div>
@@ -395,11 +402,11 @@ export default function ProfilePage() {
                       </div>
                     </div>
                     <div key={3} className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                      <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3">
                         <div className="text-red-400">
                           <XCircleIcon className="w-4 h-4" />
-                        </div>
-                        <div>
+                          </div>
+                          <div>
                           <div className="text-white font-semibold">Arsenal vs Chelsea - Arsenal Win</div>
                           <div className="text-sm text-gray-400">2024-07-13</div>
                         </div>
@@ -419,9 +426,9 @@ export default function ProfilePage() {
                         <div>
                           <div className="text-white font-semibold">EUR/USD - Buy Signal</div>
                           <div className="text-sm text-gray-400">2024-07-12</div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="text-right">
+                        <div className="text-right">
                         <div className="text-white font-semibold">$100</div>
                         <div className="text-sm font-semibold text-green-400">
                           $185.00
@@ -437,7 +444,7 @@ export default function ProfilePage() {
                           <div className="text-white font-semibold">Tennis - Djokovic Win</div>
                           <div className="text-sm text-gray-400">2024-07-11</div>
                         </div>
-                      </div>
+                          </div>
                       <div className="text-right">
                         <div className="text-white font-semibold">$40</div>
                         <div className="text-sm font-semibold text-green-400">
@@ -583,16 +590,16 @@ export default function ProfilePage() {
                       <td className="px-6 py-4 text-sm text-white font-medium">Tennis - Djokovic Win</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-white">${40}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-300 font-bold">{1.60}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap">
                         <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-green-600 text-white">
                           <CheckCircleIcon className="w-4 h-4" />
                           Win
-                        </span>
-                      </td>
+                          </span>
+                        </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-400">
                         ${64.00}
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
                   </tbody>
                 </table>
               </div>

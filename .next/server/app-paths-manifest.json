@@ -1,7 +1,24 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
+  "/forgot-password/page": "app/forgot-password/page.js",
   "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/register/page": "app/register/page.js",
+  "/reset-password/page": "app/reset-password/page.js",
+  "/verify-email/page": "app/verify-email/page.js",
+  "/dashboard/ai-chat/page": "app/dashboard/ai-chat/page.js",
+  "/dashboard/betslips/page": "app/dashboard/betslips/page.js",
+  "/dashboard/affiliates/page": "app/dashboard/affiliates/page.js",
+  "/dashboard/feed/page": "app/dashboard/feed/page.js",
+  "/dashboard/community/page": "app/dashboard/community/page.js",
   "/dashboard/profile/page": "app/dashboard/profile/page.js",
-  "/dashboard/feed/page": "app/dashboard/feed/page.js"
+  "/dashboard/forex/page": "app/dashboard/forex/page.js",
+  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js",
+  "/dashboard/wallet/page": "app/dashboard/wallet/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/support/page": "app/dashboard/support/page.js",
+  "/dashboard/tips/page": "app/dashboard/tips/page.js",
+  "/dashboard/analytics/page": "app/dashboard/analytics/page.js",
+  "/api/ai-chat/route": "app/api/ai-chat/route.js"
 }

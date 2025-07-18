@@ -22,8 +22,8 @@ export async function uploadAvatar(userId: string, file: File) {
   if (uploadError) return { error: uploadError };
   const { data } = supabase.storage.from('avatars').getPublicUrl(filePath);
   const publicUrl = data.publicUrl;
-  // Update the user's avatar column in the users table
-  const { error: updateError } = await supabase.from('users').update({ avatar: publicUrl }).eq('id', userId);
+  // Update the user's avatars column in the users table (note: column name is 'avatars', not 'avatar')
+  const { error: updateError } = await supabase.from('users').update({ avatars: publicUrl }).eq('id', userId);
   if (updateError) return { error: updateError };
   return { url: publicUrl };
 }

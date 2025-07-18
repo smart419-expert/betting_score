@@ -33,13 +33,11 @@ const navLinks = [
   { name: 'AI Chat', href: '/dashboard/ai-chat', icon: ChatBubbleLeftRightIcon },
   { name: 'Ticket Builder', href: '/dashboard/betslips', icon: CogIcon, premium: true },
   { name: 'Collaboration', href: '/dashboard/community', icon: UsersIcon, premium: true },
-  { name: 'My Profile', href: '/dashboard/profile', icon: UserIcon },
   { name: 'Wallet', href: '/dashboard/wallet', icon: WalletIcon },
 ];
 
 const bottomLinks = [
-  { name: 'Settings', href: '/dashboard/settings', icon: Cog6ToothIcon },
-  { name: 'My Account', href: '/dashboard/support', icon: LifebuoyIcon },
+  { name: 'My Profile', href: '/dashboard/profile', icon: UserIcon },
   { name: 'Log out', href: '/', icon: ArrowRightOnRectangleIcon },
 ];
 
